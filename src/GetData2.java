@@ -1,4 +1,4 @@
-// | 1st | phone number | position(VERSIONS => 100) | position code | location |
+// | 2nd | location | phone_numbers(VERSIONS => 100) | phone number | position code |
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -11,7 +11,7 @@ import org.apache.hadoop.hbase.MasterNotRunningException;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 
-public class GetData1 {
+public class GetData2 {
     private static final int initialCapacity = 10000;
     private static ArrayList<String> phoneNums = new ArrayList<>(initialCapacity);
     private static ArrayList<Long> ts = new ArrayList<>(initialCapacity);
@@ -19,18 +19,14 @@ public class GetData1 {
     private static ArrayList<Long> positionCodes = new ArrayList<>(initialCapacity);
 
     public static void main(String[] args) throws MasterNotRunningException, IOException {
-        getData();
-    }
-
-    private static void getData() throws IOException {
         Connection connection = ConnectionFactory.createConnection();
-        Table table = connection.getTable(TableName.valueOf("table1"));
-
-        Get get = new Get(Bytes.toBytes("0901615803"));
+        Table table = connection.getTable(TableName.valueOf("table2"));
+        // TODO: modifications
+        Get get = new Get(Bytes.toBytes(""));
         Result result = table.get(get);
         NavigableMap<byte[], NavigableMap<byte[], NavigableMap<Long, byte[]>>> map = result.getMap();
 
-        System.out.println("\nget 'table1', '0901615803'");
+        System.out.println("\nget 'table2', ''");
 
         // System.out.println("Entries of map.entrySet():\n");
         int i = 0;

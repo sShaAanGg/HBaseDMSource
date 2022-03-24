@@ -1,4 +1,4 @@
-// | 1st | phone number | position(VERSIONS => 100) | position code | location |
+// | 2nd | location | phone_numbers(VERSIONS => 100) | phone number | position code |
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -14,7 +14,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 // import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class PutData1 {
+public class PutData2 {
     private static final int initialCapacity = 10000;
     private static ArrayList<String> phoneNums = new ArrayList<>(initialCapacity);
     private static ArrayList<Long> ts = new ArrayList<>(initialCapacity);
@@ -25,7 +25,7 @@ public class PutData1 {
     public static void main(String[] args) throws MasterNotRunningException, IOException {
         // Instantiating a Connection class object and table object
         Connection connection = ConnectionFactory.createConnection();
-        Table table = connection.getTable(TableName.valueOf("table1"));
+        Table table = connection.getTable(TableName.valueOf("table2"));
         sizeOfList = 0;
         final int numOfInFiles = 4;
         for (int i = 0; i < numOfInFiles; i++) {
@@ -33,12 +33,12 @@ public class PutData1 {
             readFromXlsx("/home/shang/repo/myHBaseProject/HbaseDataGenerate/test/data/data_from_1-"
                     + Integer.toString(1 + (i * 7)) + "_sorted.xlsx");
         }
-
+        // TODO: modifications
         ArrayList<Put> puts = new ArrayList<>(sizeOfList);
         for (int i = 0; i < sizeOfList; i++) {
-            Put put = new Put(Bytes.toBytes(phoneNums.get(i)));
-            put.addColumn(Bytes.toBytes("pos"), Bytes.toBytes(positionCodes.get(i)), ts.get(i),
-                    Bytes.toBytes(placeCodes.get(i)));
+            Put put = new Put(Bytes.toBytes(placeCodes.get(i)));
+            put.addColumn(Bytes.toBytes("pho"), Bytes.toBytes(phoneNums.get(i)), ts.get(i),
+                    Bytes.toBytes(positionCodes.get(i)));
             puts.add(put);
             put = null;
         }
