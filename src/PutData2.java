@@ -1,3 +1,4 @@
+
 // | 2nd | location | phone_numbers(VERSIONS => 100) | phone number | position code |
 import java.io.*;
 import java.time.LocalDateTime;
@@ -45,10 +46,6 @@ public class PutData2 {
 
         table.put(puts);
         System.out.println("Data was inserted Successfully");
-        // put.addColumn(Bytes.toBytes("personal"), Bytes.toBytes("name"),
-        // Bytes.toBytes("Tom"));
-        // table.put(put);
-        // System.out.println("data inserted");
 
         // Close table and connection
         table.close();

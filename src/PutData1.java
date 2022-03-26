@@ -1,3 +1,4 @@
+
 // | 1st | phone number | position(VERSIONS => 100) | position code | location |
 import java.io.*;
 import java.time.LocalDateTime;
@@ -29,26 +30,16 @@ public class PutData1 {
         sizeOfList = 0;
         final int numOfInFiles = 4;
         for (int i = 0; i < numOfInFiles; i++) {
-
             readFromXlsx("/home/shang/repo/myHBaseProject/HbaseDataGenerate/test/data/data_from_1-"
                     + Integer.toString(1 + (i * 7)) + "_sorted.xlsx");
         }
 
         ArrayList<Put> puts = new ArrayList<>(sizeOfList);
-        for (int i = 0; i < sizeOfList; i++) {
-            Put put = new Put(Bytes.toBytes(phoneNums.get(i)));
-            put.addColumn(Bytes.toBytes("pos"), Bytes.toBytes(positionCodes.get(i)), ts.get(i),
-                    Bytes.toBytes(placeCodes.get(i)));
-            puts.add(put);
-            put = null;
-        }
+        putData(puts);
+        // putPhoneNum(puts);
 
         table.put(puts);
         System.out.println("Data was inserted Successfully");
-        // put.addColumn(Bytes.toBytes("personal"), Bytes.toBytes("name"),
-        // Bytes.toBytes("Tom"));
-        // table.put(put);
-        // System.out.println("data inserted");
 
         // Close table and connection
         table.close();
@@ -83,6 +74,16 @@ public class PutData1 {
         }
         sheet = null;
         xssf.close();
+    }
+
+    private static void putData(ArrayList<Put> puts) {
+        for (int i = 0; i < sizeOfList; i++) {
+            Put put = new Put(Bytes.toBytes(phoneNums.get(i)));
+            put.addColumn(Bytes.toBytes("pos"), Bytes.toBytes(positionCodes.get(i)), ts.get(i),
+                    Bytes.toBytes(placeCodes.get(i)));
+            puts.add(put);
+            put = null;
+        }
     }
 
 }
