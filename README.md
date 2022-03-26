@@ -17,7 +17,7 @@ Some points are visited by 1 covid-19 patient whose phone number is 0901615803. 
 
 ## Hbase peformance (pseudo distibuted in localhost)
 ### 1st Schema
-// | 1st | phone number | position(VERSIONS => 100) | position code | location |  
+| 1st | phone number | position(VERSIONS => 100) | position code | location |  
 ***Row key: phone number; Column family: position(VERSIONS => 100)***; Column qualifier: position code; value: locaion
 ```
 hbase:018:0> desc 'table1'
@@ -42,7 +42,7 @@ hbase:018:0> get 'table1', '0901615803'
 Took 0.0304 seconds
 ```
 ### 2nd Schema
-// | 2nd | location | phone_numbers(VERSIONS => 100) | phone number | position code |
+| 2nd | location | phone_numbers(VERSIONS => 100) | phone number | position code |  
 ***Row key: location; Column family: phone_numbers(VERSIONS => 100)***; Column qualifier: phone number; value: position code
 ```
 hbase:011:0> desc 'table2'
