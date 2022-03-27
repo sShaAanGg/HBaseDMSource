@@ -5,7 +5,23 @@ The source code and bytecode for my HBase project DATA MANIPULATION
 2. org.apache.poi (the input source is excel format file)
 
 ## source code explanation
-There are 2 tables currently. First we fetch data from 1st table through the row keys of covid-19 patients(their phone numbers); then we would get a Map<Integer, LocalDateTime> which maps the place codes(locations) visited by them to the corresponding timestamps. Next, we can fetch data from table2 to determine who must be quarantined. **OR use just 1 table to do this.** That is, combine 2 table into one and its column families would be position and phone numbers.
+There are 2 tables currently. PutData1.java and PutData2.java puts data into table1 and table2 respectively; Processor calls getData() from GetData1 and GetData2, which fetches data from 1st table through the row keys of covid-19 patients(their phone numbers); then we would get a Map<Integer, LocalDateTime> which maps the place codes(locations) visited by them to the corresponding timestamps. Next, we can fetch data from table2 to determine who must be quarantined. 
+
+***OR use just 1 table to do this.*** That is, combine 2 table into one and its column families would be **pos**ition and **pho**ne numbers. Thus There would be **only 1 class for PutData and another for GetData**. Its schema would be like the one below:
+```
+hbase:007:0> desc 'table'
+Table table is ENABLED
+table
+COLUMN FAMILIES DESCRIPTION
+{NAME => 'pho', BLOOMFILTER => 'ROW', IN_MEMORY => 'false', VERSIONS => '100', KEEP_DELETED_CELLS => 'FALSE', DATA_BLOCK_ENCODING => 'NONE', COMPRESSION =>
+'NONE', TTL => 'FOREVER', MIN_VERSIONS => '0', BLOCKCACHE => 'true', BLOCKSIZE => '65536', REPLICATION_SCOPE => '0'}
+
+{NAME => 'pos', BLOOMFILTER => 'ROW', IN_MEMORY => 'false', VERSIONS => '100', KEEP_DELETED_CELLS => 'FALSE', DATA_BLOCK_ENCODING => 'NONE', COMPRESSION =>
+'NONE', TTL => 'FOREVER', MIN_VERSIONS => '0', BLOCKCACHE => 'true', BLOCKSIZE => '65536', REPLICATION_SCOPE => '0'}
+
+2 row(s)
+Quota is disabled
+```
 
 | Schema | Row Key | Column Family | Column Qualifier | value |
 | --- | --- | --- | --- | --- |
@@ -29,7 +45,6 @@ COLUMN FAMILIES DESCRIPTION
 
 1 row(s)
 Quota is disabled
-Took 0.0210 seconds
 ```
 ```
 hbase:018:0> scan 'table1'
@@ -54,7 +69,6 @@ COLUMN FAMILIES DESCRIPTION
 
 1 row(s)
 Quota is disabled
-Took 0.0215 seconds
 ```
 ```
 hbase:015:0> scan 'table2'

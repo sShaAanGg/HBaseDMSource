@@ -23,8 +23,8 @@ public class Processor {
             (int) Math.sqrt(initialCapacity));
 
     public static void main(String[] args) throws MasterNotRunningException, IOException {
-        GetData1 getData1 = new GetData1();
-        getData1.getData(loc2Timestamp);
+
+        GetData1.getData(loc2Timestamp);
         int i = 0;
         for (Map.Entry<Integer, LocalDateTime> entry : loc2Timestamp.entrySet()) {
             System.out.println("Key: " + Integer.toString(entry.getKey()) + ", Value: " + entry.getValue().toString());

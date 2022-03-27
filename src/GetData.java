@@ -1,5 +1,6 @@
 
 // | 1st | phone number | position(VERSIONS => 100) | position code | location |
+// | 2nd | location | phone_numbers(VERSIONS => 100) | phone number | position code |
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -12,7 +13,7 @@ import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 
-public class GetData1 {
+public class GetData {
     // private static final int initialCapacity = 10000;
     // private static ArrayList<String> phoneNums = new
     // ArrayList<>(initialCapacity);
@@ -26,7 +27,7 @@ public class GetData1 {
     // private static HashMap<Integer, LocalDateTime> loc2Timestamp = new HashMap<>(
     // (int) Math.sqrt(initialCapacity));
 
-    // GetData1() {
+    // GetData() {
 
     // }
 
@@ -35,16 +36,16 @@ public class GetData1 {
     // getData();
     // }
 
+    // TODO: modifications
     public static void getData(HashMap<Integer, LocalDateTime> loc2Timestamp) throws IOException {
         Connection connection = ConnectionFactory.createConnection();
-        Table table = connection.getTable(TableName.valueOf("table1"));
-
+        Table table = connection.getTable(TableName.valueOf("table"));
         Get get = new Get(Bytes.toBytes("0901615803"));
         get = get.addFamily(Bytes.toBytes("pos"));
         Result result = table.get(get);
         NavigableMap<byte[], NavigableMap<byte[], NavigableMap<Long, byte[]>>> map = result.getMap();
 
-        System.out.println("\nget 'table1', '0901615803'");
+        System.out.println("\nget 'table', '0901615803'");
 
         // System.out.println("Entries of map.entrySet():\n");
         int i = 0;

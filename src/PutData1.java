@@ -36,7 +36,6 @@ public class PutData1 {
 
         ArrayList<Put> puts = new ArrayList<>(sizeOfList);
         putData(puts);
-        // putPhoneNum(puts);
 
         table.put(puts);
         System.out.println("Data was inserted Successfully");
