@@ -4,7 +4,7 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.HashMap;
-// import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.NavigableMap;
 
@@ -22,44 +22,36 @@ public class GetData2 {
     // private static ArrayList<Long> positionCodes = new
     // ArrayList<>(initialCapacity);
 
-    // GetData2() {
-
-    // }
-
-    // public static void main(String[] args) throws MasterNotRunningException,
-    // IOException {
-    // getData();
-    // }
-
     // TODO: modifications
-    public static void getData(HashMap<Integer, LocalDateTime> loc2Timestamp) throws IOException {
+    public static void getData(int placeCode, long ts, ArrayList<String> phoneNums) throws IOException {
         Connection connection = ConnectionFactory.createConnection();
         Table table = connection.getTable(TableName.valueOf("table2"));
-        Get get = new Get(Bytes.toBytes(""));
+        Get get = new Get(Bytes.toBytes(placeCode));
         get = get.addFamily(Bytes.toBytes("pho"));
         Result result = table.get(get);
         NavigableMap<byte[], NavigableMap<byte[], NavigableMap<Long, byte[]>>> map = result.getMap();
-        
         // TODO: modifications
-        System.out.println("\nget 'table2', ''");
+        System.out.println("\nget 'table2', '" + Integer.toString(placeCode) + "'");
 
-        // System.out.println("Entries of map.entrySet():\n");
+        // If the time difference of the message's time stamp and another patient's
+        // message's time stamp is shorter than 24 hours, then he / she would be added
+        // to the list for notification.
+        final long rangeSecond = 24 * 60 * 60;
+
+        System.out.println("Entries of map.entrySet() from table2:\n");
         int i = 0;
         for (Map.Entry<byte[], NavigableMap<byte[], NavigableMap<Long, byte[]>>> entry : map.entrySet()) {
             for (Map.Entry<byte[], NavigableMap<Long, byte[]>> entry2 : entry.getValue().entrySet()) {
                 for (Map.Entry<Long, byte[]> entry3 : entry2.getValue().entrySet()) {
-                    // System.out.print(Bytes.toString(entry.getKey()) + ": ");
-                    LocalDateTime dateTime = LocalDateTime.ofEpochSecond(entry3.getKey() / 1000, 0,
-                            ZoneOffset.of("+08:00"));
-                    loc2Timestamp.put(Bytes.toInt(entry3.getValue()), dateTime);
-                    // System.out.print(Long.toString(Bytes.toLong(entry2.getKey())) + '\t');
-                    // System.out.println("timestamp = " + dateTime.toString() + ", value = "
-                    // + Integer.toString(Bytes.toInt(entry3.getValue())));
+                    System.out.print(Bytes.toString(entry.getKey()) + ": ");
+                    long timestampSecond = entry3.getKey() / 1000; // millisecond to second
 
-                    // System.out.print("Key: " + Integer.toString(Bytes.toInt(entry3.getValue()))
-                    // + ", Value: " + loc2Timestamp.get(Bytes.toInt(entry3.getValue())) + '\t');
-                    // System.out.println("The " + (i + 1) + "-th Entry added");
-                    dateTime = null;
+                    // TODO: time difference calculation
+                    System.out.print(Bytes.toString(entry2.getKey()) + '\t');
+                    System.out.println("timestamp = "
+                            + LocalDateTime.ofEpochSecond(entry3.getKey() / 1000, 0, ZoneOffset.of("+8:00")).toString()
+                            + ", value = " + Long.toString(Bytes.toLong(entry3.getValue())));
+
                     i++;
                 }
             }

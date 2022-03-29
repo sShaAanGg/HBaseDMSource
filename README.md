@@ -5,7 +5,9 @@ The source code and bytecode for my HBase project DATA MANIPULATION
 2. org.apache.poi (the input source is excel format file)
 
 ## source code explanation
-There are 2 tables currently. PutData1.java and PutData2.java puts data into table1 and table2 respectively; Processor calls getData() from GetData1 and GetData2, which fetches data from 1st table through the row keys of covid-19 patients(their phone numbers); then we would get a Map<Integer, LocalDateTime> which maps the place codes(locations) visited by them to the corresponding timestamps. Next, we can fetch data from table2 to determine who must be quarantined. 
+**There is no main() function in GetData(). Functions in GetData.*() are called by Processor.**
+
+There are 2 tables currently. PutData1.java and PutData2.java puts data into table1 and table2 respectively; Processor calls getData() from GetData1 and GetData2, which fetches data from 1st table through the row keys of covid-19 patients(their phone numbers); then we would get a Map<Integer, Long> which maps the place codes(locations) visited by them to the corresponding timestamps. Next, we can fetch data from table2 to determine who must be quarantined. 
 
 ***OR use just 1 table to do this.*** That is, combine 2 table into one and its column families would be **pos**ition and **pho**ne numbers. Thus There would be **only 1 class for PutData and another for GetData**. Its schema would be like the one below:
 ```
