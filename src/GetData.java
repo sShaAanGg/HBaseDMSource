@@ -1,4 +1,6 @@
+// NOT IN USED
 
+// Schema of 'table'
 // | 1st | phone number | position(VERSIONS => 100) | position code | location |
 // | 2nd | location | phone_numbers(VERSIONS => 100) | phone number | position code |
 import java.io.*;

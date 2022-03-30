@@ -1,4 +1,5 @@
 
+// Schema of 'table2'
 // | 2nd | location | phone_numbers(VERSIONS => 100) | phone number | position code |
 import java.io.*;
 import java.time.LocalDateTime;
@@ -30,11 +31,10 @@ public class PutData2 {
         sizeOfList = 0;
         final int numOfInFiles = 4;
         for (int i = 0; i < numOfInFiles; i++) {
-
             readFromXlsx("/home/shang/repo/myHBaseProject/HbaseDataGenerate/test/data/data_from_1-"
                     + Integer.toString(1 + (i * 7)) + "_sorted.xlsx");
         }
-        // TODO: modifications
+
         ArrayList<Put> puts = new ArrayList<>(sizeOfList);
         putData(puts);
 

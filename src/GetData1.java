@@ -1,14 +1,12 @@
 
+// Schema of 'table1'
 // | 1st | phone number | position(VERSIONS => 100) | position code | location |
 import java.io.*;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 // import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.NavigableMap;
 
-import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 
@@ -28,10 +26,7 @@ public class GetData1 {
 
     private static final String covidPatient = Processor.covidPatient;
 
-    public static void getData(HashMap<Integer, Long> loc2Timestamp) throws IOException {
-        Connection connection = ConnectionFactory.createConnection();
-        Table table = connection.getTable(TableName.valueOf("table1"));
-
+    public static void getData(Table table, HashMap<Integer, Long> loc2Timestamp) throws IOException {
         Get get = new Get(Bytes.toBytes(covidPatient));
         get = get.addFamily(Bytes.toBytes("pos"));
         Result result = table.get(get);
@@ -39,8 +34,8 @@ public class GetData1 {
 
         System.out.println("\nget 'table1', '" + covidPatient + "'");
 
-        // System.out.println("Entries of map.entrySet():\n");
-        int i = 0;
+        // System.out.println("Entries of map.entrySet() from table1:\n");
+        // int i = 0;
         for (Map.Entry<byte[], NavigableMap<byte[], NavigableMap<Long, byte[]>>> entry : map.entrySet()) {
             for (Map.Entry<byte[], NavigableMap<Long, byte[]>> entry2 : entry.getValue().entrySet()) {
                 for (Map.Entry<Long, byte[]> entry3 : entry2.getValue().entrySet()) {
@@ -57,14 +52,11 @@ public class GetData1 {
                     // + ", Value: " + loc2Timestamp.get(Bytes.toInt(entry3.getValue())) + '\t');
                     // System.out.println("The " + (i + 1) + "-th Entry added");
                     // dateTime = null;
-                    i++;
+                    // i++;
                 }
             }
         }
-        System.out.println("\nThere are " + Integer.toString(i) + " entries in map.entrSet()");
-
-        // Close table and connection
-        table.close();
-        connection.close();
+        // System.out.println("\nThere are " + Integer.toString(i) + " entries in
+        // map.entrSet() from table1\n");
     }
 }

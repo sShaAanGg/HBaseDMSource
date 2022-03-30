@@ -1,4 +1,6 @@
+// NOT IN USED
 
+// Schema of 'table'
 // | 1st | phone number | position(VERSIONS => 100) | position code | location |
 // | 2nd | location | phone_numbers(VERSIONS => 100) | phone number | position code |
 import java.io.*;
@@ -60,7 +62,7 @@ public class PutData {
             throw exception;
         }
 
-        final int second2Milli = 1000;
+        final int second2Milli = 1000; // for converting second to millisecond
         for (Row row : sheet) {
             sizeOfList++;
             phoneNums.add(row.getCell(0).getStringCellValue()); // phone numbers

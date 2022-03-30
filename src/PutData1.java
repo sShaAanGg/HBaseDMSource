@@ -1,4 +1,5 @@
 
+// Schema of 'table1'
 // | 1st | phone number | position(VERSIONS => 100) | position code | location |
 import java.io.*;
 import java.time.LocalDateTime;
