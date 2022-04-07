@@ -1,6 +1,8 @@
 
 // Now the Processor processes data from table1 and table2. PutData.java and GetData.java are NOT IN USED.
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.HashMap;
@@ -31,6 +33,14 @@ public class Processor {
         Connection connection = ConnectionFactory.createConnection();
         Table table1 = connection.getTable(TableName.valueOf("table1"));
         Table table2 = connection.getTable(TableName.valueOf("table2"));
+        File file = new File("test/output/output1.txt");
+        if (file.createNewFile()) {
+        } else {
+            file.delete();
+            file.createNewFile();
+        }
+        
+        PrintStream stream = new PrintStream(file);
 
         phoneNums.add(covidPatient);
         GetData1.getData(table1, loc2Timestamp);
@@ -44,19 +54,22 @@ public class Processor {
 
             i++;
         }
-        System.out.println("\nThere are " + Integer.toString(i) + " entries in loc2Timestamp.entrySet()\n");
+        System.out.println("\nThere are " + Integer.toString(i) + " entries in loc2Timestamp.entrySet()");
 
-        System.out.println(
+        stream.println(
                 "The phone numbers below are going to be notified because their paths were overlapping with those of the covid patients");
         int j = 0;
         for (String phoNum : phoneNums) {
             if (j % 10 == 0) {
-                System.out.print('\n');
+                stream.print('\n');
             }
-            System.out.print(phoNum + ' ');
+            stream.print(phoNum + ' ');
             j++;
         }
-        System.out.println("\n\nThere are " + Integer.toString(j) + " people in the notification list");
+        stream.println("\n\nThere are " + Integer.toString(j) + " people in the notification list");
+
+        
+        stream.close();
         // Close table and connection
         table1.close();
         table2.close();

@@ -2,8 +2,6 @@
 // Schema of 'table2'
 // | 2nd | location | phone_numbers(VERSIONS => 100) | phone number | position code |
 import java.io.*;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.NavigableMap;
@@ -12,15 +10,6 @@ import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 
 public class GetData2 {
-    // private static final int initialCapacity = 10000;
-    // private static ArrayList<String> phoneNums = new
-    // ArrayList<>(initialCapacity);
-    // private static ArrayList<Long> ts = new ArrayList<>(initialCapacity);
-    // private static ArrayList<Integer> placeCodes = new
-    // ArrayList<>(initialCapacity);
-    // private static ArrayList<Long> positionCodes = new
-    // ArrayList<>(initialCapacity);
-
     // TODO: modifications
     public static void getData(Table table, int placeCode, long ts, ArrayList<String> phoneNums) throws IOException {
         Get get = new Get(Bytes.toBytes(placeCode));

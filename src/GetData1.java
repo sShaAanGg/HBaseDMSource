@@ -11,19 +11,6 @@ import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 
 public class GetData1 {
-    // private static final int initialCapacity = 10000;
-    // private static ArrayList<String> phoneNums = new
-    // ArrayList<>(initialCapacity);
-    // private static ArrayList<Long> ts = new ArrayList<>(initialCapacity);
-    // private static ArrayList<Integer> placeCodes = new
-    // ArrayList<>(initialCapacity);
-    // private static ArrayList<Long> positionCodes = new
-    // ArrayList<>(initialCapacity);
-
-    // Maps the locations visited to the corresponding timestamps
-    // private static HashMap<Integer, LocalDateTime> loc2Timestamp = new HashMap<>(
-    // (int) Math.sqrt(initialCapacity));
-
     private static final String covidPatient = Processor.covidPatient;
 
     public static void getData(Table table, HashMap<Integer, Long> loc2Timestamp) throws IOException {
