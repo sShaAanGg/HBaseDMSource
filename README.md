@@ -86,3 +86,7 @@ Took 26.5827 seconds
 ```
 ```
 ```
+## Reference
+1. https://javadoc.io/doc/org.apache.hbase/hbase-client/2.4.9/index.html
+2. https://hbase.apache.org/2.4/book.html
+3. https://cloud.google.com/bigtable/docs/schema-design
