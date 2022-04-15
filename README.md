@@ -1,8 +1,15 @@
 The source code and bytecode for my HBase project DATA MANIPULATION
 
 # Referenced libraries
-1. org.apache.hadoop.hbase
-2. org.apache.poi (the input source is excel format file)
+Java
+
+1. org.apache.hadoop.hbase (essential for HBase client API)
+2. org.apache.poi (for the excel format input file)
+
+Python
+
+3. numpy
+4. matplotlib
 
 ## source code explanation
 **There is no main() function in GetData(). Functions in GetData.*() are called by Processor.**

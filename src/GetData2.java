@@ -16,7 +16,7 @@ public class GetData2 {
         get = get.addFamily(Bytes.toBytes("pho"));
         Result result = table.get(get);
         NavigableMap<byte[], NavigableMap<byte[], NavigableMap<Long, byte[]>>> map = result.getMap();
-        // TODO: modifications
+
         System.out.println("\nget 'table2', '" + Integer.toString(placeCode) + "'");
 
         // If the time difference of the message's time stamp and another patient's
@@ -45,7 +45,7 @@ public class GetData2 {
                     } // else, ts < or = timestampSecond
                       // System.out.print(Bytes.toString(entry.getKey()) + ": ");
 
-                    // TODO: time difference calculation
+                    // Time difference calculation
                     toBeAdded = (timestampSecond - ts <= rangeSecond); // ts < or = timestampSecond
                     if (toBeAdded) {
                         phoneNums.add(Bytes.toString(entry2.getKey()));
