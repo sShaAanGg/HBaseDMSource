@@ -35,8 +35,8 @@ public class Processor {
         Connection connection = ConnectionFactory.createConnection();
         Table table1 = connection.getTable(TableName.valueOf("table1"));
         Table table2 = connection.getTable(TableName.valueOf("table2"));
-        File output = new File("test/output/output1.txt");
-        File metadata = new File("test/output/output1_metadata.txt");
+        File output = new File("HBaseDMSource/output/output1.txt");
+        File metadata = new File("HBaseDMSource/output/output1_metadata.txt");
         if (!output.createNewFile()) {
             output.delete();
         } else if (!metadata.createNewFile()) {
