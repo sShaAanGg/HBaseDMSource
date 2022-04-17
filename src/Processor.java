@@ -15,14 +15,16 @@ import org.apache.hadoop.hbase.MasterNotRunningException;
 
 public class Processor {
     private static final int initialCapacity = 10000;
-
-    // The phone numbers which are going to be notified because their paths were
-    // overlapped with those of the covid patients
+    /**
+     * The phone numbers which are going to be notified because their paths were
+     * overlapped with those of the covid patients
+     */
     private static ArrayList<String> phoneNums = new ArrayList<>(initialCapacity);
 
-    // Maps the locations visited to the corresponding timestamps
+    /** Maps the locations visited to the corresponding timestamps */
     private static HashMap<Integer, Long> loc2Timestamp = new HashMap<>(
             (int) Math.sqrt(initialCapacity));
+            
     // private static ArrayList<HashMap<Integer, Long>> listOfMaps = new
     // ArrayList<>(
     // (int) Math.sqrt(initialCapacity));

@@ -10,7 +10,6 @@ import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 
 public class GetData2 {
-    // TODO: modifications
     public static void getData(Table table, int placeCode, long ts, ArrayList<String> phoneNums) throws IOException {
         Get get = new Get(Bytes.toBytes(placeCode));
         get = get.addFamily(Bytes.toBytes("pho"));
@@ -19,9 +18,11 @@ public class GetData2 {
 
         System.out.println("\nget 'table2', '" + Integer.toString(placeCode) + "'");
 
-        // If the time difference of the message's time stamp and another patient's
-        // message's time stamp is shorter than 24 hours, then he / she would be added
-        // to the list for notification.
+        /**
+         * If the time difference of the message's time stamp and another patient's
+         * message's time stamp is shorter than 24 hours, then he / she would be added
+         * to the list for notification.
+         */
         final long rangeSecond = 24 * 60 * 60;
 
         // System.out.println("Entries of map.entrySet() from table2:\n");
@@ -37,13 +38,16 @@ public class GetData2 {
                 for (Map.Entry<Long, byte[]> entry3 : entry2.getValue().entrySet()) {
                     long timestampSecond = entry3.getKey() / 1000; // convert millisecond to second
 
-                    // ts is the timestamp of the covid patient; ts > timestamp means this person
-                    // had been here before the covid patient had so we need not to notify the
-                    // person.
+                    /**
+                     * ts is the timestamp of the covid patient; ts > timestamp means this person
+                     * had been here before the covid patient had so we need not to notify the
+                     * person.
+                     */
                     if (ts > timestampSecond) {
                         continue;
                     } // else, ts < or = timestampSecond
-                      // System.out.print(Bytes.toString(entry.getKey()) + ": ");
+
+                    // System.out.print(Bytes.toString(entry.getKey()) + ": ");
 
                     // Time difference calculation
                     toBeAdded = (timestampSecond - ts <= rangeSecond); // ts < or = timestampSecond

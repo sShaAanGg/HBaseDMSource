@@ -10,6 +10,8 @@ str_list2 = line_list[1].split(' ')
 x1 = str_list1[2]
 x2 = str_list2[2]
 print(x1, x2)
-# y = np.sin(x)
-# plt.plot(x, y)
+
+x = np.arange(0, 5, 0.1)
+y = np.sin(x)
+plt.plot(x, y)
 # plt.savefig("fig.png")

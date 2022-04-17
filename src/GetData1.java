@@ -2,7 +2,6 @@
 // Schema of 'table1'
 // | 1st | phone number | position(VERSIONS => 100) | position code | location |
 import java.io.*;
-// import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.NavigableMap;
