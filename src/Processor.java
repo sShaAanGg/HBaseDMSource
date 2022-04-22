@@ -24,7 +24,7 @@ public class Processor {
     /** Maps the locations visited to the corresponding timestamps */
     private static HashMap<Integer, Long> loc2Timestamp = new HashMap<>(
             (int) Math.sqrt(initialCapacity));
-            
+
     // private static ArrayList<HashMap<Integer, Long>> listOfMaps = new
     // ArrayList<>(
     // (int) Math.sqrt(initialCapacity));
@@ -35,8 +35,8 @@ public class Processor {
         Connection connection = ConnectionFactory.createConnection();
         Table table1 = connection.getTable(TableName.valueOf("table1"));
         Table table2 = connection.getTable(TableName.valueOf("table2"));
-        File output = new File("HBaseDMSource/output/output1.txt");
-        File metadata = new File("HBaseDMSource/output/output1_metadata.txt");
+        File output = new File("../output/output1.txt");
+        File metadata = new File("../output/output1_metadata.txt");
         if (!output.createNewFile()) {
             output.delete();
         } else if (!metadata.createNewFile()) {
