@@ -8,8 +8,8 @@ org.apache.hadoop.hbase (essential for HBase client API)
 
 Python
 
-3. numpy
-4. matplotlib
+numpy  
+matplotlib
 
 ## source code explanation
 **There is no main() function in GetData(). Functions in GetData.*() are called by Processor.**
@@ -78,7 +78,7 @@ Took 0.1337 seconds
 ```
 
 # Case 1
-Some points are visited by 1 covid-19 patient whose phone number is 0900060382. Thus we have a Map<Integer, LocalDateTime> which maps the place codes(locations) visited by 0900060382 to the corresponding timestamps.
+Some points are visited by 1 covid-19 patient whose phone number is 0999999228. Thus we have a Map<Integer, LocalDateTime> which maps the place codes(locations) visited by 0999999228 to the corresponding timestamps.
 
 ## Hbase peformance (distibuted mode)
 ### 1st Schema

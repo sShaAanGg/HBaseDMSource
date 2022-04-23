@@ -11,7 +11,7 @@ import org.apache.hadoop.hbase.util.Bytes;
 
 public class GetData2 {
     public static void getData(Table table, int placeCode, long ts, ArrayList<String> phoneNums) throws IOException {
-        Get get = new Get(Bytes.toBytes(placeCode));
+        Get get = new Get(Bytes.toBytes(Integer.toString(placeCode)));
         get = get.addFamily(Bytes.toBytes("pho"));
         Result result = table.get(get);
         NavigableMap<byte[], NavigableMap<byte[], NavigableMap<Long, byte[]>>> map = result.getMap();

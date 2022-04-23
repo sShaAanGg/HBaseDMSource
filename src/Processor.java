@@ -29,7 +29,7 @@ public class Processor {
     // ArrayList<>(
     // (int) Math.sqrt(initialCapacity));
 
-    public static final String covidPatient = "0900060382";
+    public static final String covidPatient = "0999999228";
 
     public static void main(String[] args) throws MasterNotRunningException, IOException {
         Connection connection = ConnectionFactory.createConnection();
