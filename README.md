@@ -10,7 +10,10 @@ Python
 
 numpy  
 matplotlib
-
+### CLASSPATH environment variable
+```export CLASSPATH=$HBASE_HOME/lib/*```
+### Execution
+```java -cp $CLASSPATH:target/ *.class```
 ## source code explanation
 **There is no main() function in GetData(). Functions in GetData.*() are called by Processor.**
 
@@ -55,8 +58,8 @@ Quota is disabled
 ```
 ```
 hbase(main):005:0> scan "MAP"
-10000 row(s)
-Took 1.5784 seconds
+1000000 row(s)
+Took 127.8527 seconds
 ```
 ### PEOPLE Schema
 | Map | (RK) phone number | (CF) liv | (CQ) living pattern | (value) name |
@@ -73,14 +76,15 @@ Quota is disabled
 ```
 ```
 hbase(main):009:0> scan 'PEOPLE'
-1000 row(s)
-Took 0.1337 seconds
+99955 row(s)
+Took 22.5512 seconds
 ```
+(It was really weird that 45 people were lost)
 
-# Case 1
+# Test Condition
 Some points are visited by 1 covid-19 patient whose phone number is 0999999228. Thus we have a Map<Integer, LocalDateTime> which maps the place codes(locations) visited by 0999999228 to the corresponding timestamps.
 
-## Hbase peformance (distibuted mode)
+## Hbase peformance evaluation (distibuted mode)
 ### 1st Schema
 | 1st | phone number | position(VERSIONS => 100) | position code | location |  
 ***Row key: phone number; Column family: position(VERSIONS => 100)***; Column qualifier: position code; value: locaion
