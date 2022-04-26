@@ -35,8 +35,24 @@ public class Processor {
         Connection connection = ConnectionFactory.createConnection();
         Table table1 = connection.getTable(TableName.valueOf("table1"));
         Table table2 = connection.getTable(TableName.valueOf("table2"));
-        File output = new File("../output/output1.txt");
-        File metadata = new File("../output/output1_metadata.txt");
+        File output = new File("./output/output1.txt");
+        File metadata = new File("./output/output1_metadata.txt");
+
+        fromTable1and2(connection, table1, table2, output, metadata);
+        // Close table and connection, and stream
+        output = null;
+        metadata = null;
+
+        table1.close();
+        table2.close();
+        connection.close();
+        table1 = null;
+        table2 = null;
+        connection = null;
+    }
+
+    private static void fromTable1and2(Connection connection, Table table1, Table table2, File output, File metadata)
+            throws IOException {
         if (!output.createNewFile()) {
             output.delete();
         } else if (!metadata.createNewFile()) {
@@ -44,6 +60,7 @@ public class Processor {
         }
         output.createNewFile();
         metadata.createNewFile();
+
         PrintStream stream = new PrintStream(output);
         PrintStream metadataStream = new PrintStream(metadata);
 
@@ -66,7 +83,8 @@ public class Processor {
 
         long time2 = LocalDateTime.now().toInstant(offset).toEpochMilli();
         stream.println(
-                "It took " + Long.toString(time2 - time1) + " milliseconds to complete the process of data from HBase");
+                "It took " + Long.toString(time2 - time1)
+                        + " milliseconds to complete the processing of data from HBase");
 
         System.out.println("Output is directed to metadataStream");
         metadataStream.println(
@@ -82,20 +100,10 @@ public class Processor {
         metadataStream.println();
         stream.println("There are " + Integer.toString(j) + " people in the notification list");
 
-        // Close table and connection, and stream
         stream.close();
         metadataStream.close();
         stream = null;
         metadataStream = null;
-        output = null;
-        metadata = null;
-
-        table1.close();
-        table2.close();
-        connection.close();
-        table1 = null;
-        table2 = null;
-        connection = null;
     }
 
 }

@@ -12,6 +12,8 @@ numpy
 matplotlib
 ### CLASSPATH environment variable
 ```export CLASSPATH=$HBASE_HOME/lib/*```
+### Compilation
+```javac -d target/ -cp target:$CLASSPATH src/*.java```
 ### Execution
 ```java -cp $CLASSPATH:target/ *.class```
 ## source code explanation

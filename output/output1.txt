@@ -1,2 +1,2 @@
-It took 8324 milliseconds to complete the process of data from HBase
-There are 762 people in the notification list
+It took 199740 milliseconds to complete the process of data from HBase
+There are 6491 people in the notification list
