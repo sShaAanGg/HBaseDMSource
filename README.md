@@ -15,7 +15,7 @@ matplotlib
 ### Compilation
 ```javac -d target/ -cp target:$CLASSPATH src/*.java```
 ### Execution
-```java -cp $CLASSPATH:target/ *.class```
+```java -cp $CLASSPATH:target/ Processor```
 ## source code explanation
 **There is no main() function in GetData(). Functions in GetData.*() are called by Processor.**
 
