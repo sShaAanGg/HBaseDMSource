@@ -29,7 +29,7 @@ public class Processor {
     // ArrayList<>(
     // (int) Math.sqrt(initialCapacity));
 
-    public static final String covidPatient = "0999999228";
+    private static final String covidPatient = "0999999228";
 
     public static void main(String[] args) throws MasterNotRunningException, IOException {
         Connection connection = ConnectionFactory.createConnection();
@@ -49,6 +49,10 @@ public class Processor {
         table1 = null;
         table2 = null;
         connection = null;
+    }
+
+    public static String getFirstPatient() {
+        return covidPatient;
     }
 
     private static void fromTable1and2(Connection connection, Table table1, Table table2, File output, File metadata)

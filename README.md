@@ -101,16 +101,7 @@ COLUMN FAMILIES DESCRIPTION
 1 row(s)
 Quota is disabled
 ```
-```
-hbase:018:0> scan 'table1'
-824 row(s)
-Took 177.2401 seconds
-```
-```
-hbase:018:0> get 'table1', '0900060382'
-1 row(s)
-Took 0.2079 seconds
-```
+
 ### 2nd Schema
 | 2nd | location | phone_numbers(VERSIONS => 100) | phone number | position code |  
 ***Row key: location; Column family: phone_numbers(VERSIONS => 100)***; Column qualifier: phone number; value: position code
@@ -124,11 +115,6 @@ COLUMN FAMILIES DESCRIPTION
 
 1 row(s)
 Quota is disabled
-```
-```
-hbase:015:0> scan 'table2'
-4072 row(s)
-Took 177.2605 seconds
 ```
 
 ### 3rd Schema

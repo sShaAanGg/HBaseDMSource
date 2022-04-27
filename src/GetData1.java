@@ -10,9 +10,9 @@ import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 
 public class GetData1 {
-    private static final String covidPatient = Processor.covidPatient;
-
+    
     public static void getData(Table table, HashMap<Integer, Long> loc2Timestamp) throws IOException {
+        final String covidPatient = Processor.getFirstPatient();
         Get get = new Get(Bytes.toBytes(covidPatient));
         get = get.addFamily(Bytes.toBytes("pos"));
         Result result = table.get(get);
