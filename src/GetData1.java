@@ -11,14 +11,13 @@ import org.apache.hadoop.hbase.util.Bytes;
 
 public class GetData1 {
     
-    public static void getData(Table table, HashMap<Integer, Long> loc2Timestamp) throws IOException {
-        final String covidPatient = Processor.getFirstPatient();
+    public static void getData(Table table, HashMap<Integer, Long> loc2Timestamp, String covidPatient) throws IOException {
         Get get = new Get(Bytes.toBytes(covidPatient));
         get = get.addFamily(Bytes.toBytes("pos"));
         Result result = table.get(get);
         NavigableMap<byte[], NavigableMap<byte[], NavigableMap<Long, byte[]>>> map = result.getMap();
 
-        System.out.println("\nget 'table1', '" + covidPatient + "'");
+        // System.out.println("\nget 'table1', '" + covidPatient + "'");
 
         // System.out.println("Entries of map.entrySet() from table1:\n");
         // int i = 0;
