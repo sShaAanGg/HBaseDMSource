@@ -30,13 +30,13 @@ public class Processor {
     // ArrayList<>(
     // (int) Math.sqrt(initialCapacity));
 
-    private static final String[] covidPatients = { "0999970292", "0924287276", "0924270243", "0924166304",
-            "0924055403", "0923954960", "0923939462", "0923876364", "0923835919", "0923799856" };
+    private static final String[] covidPatients = { "0999902045", "0999904059", "0999919939", "0999932926",
+            "0999976048", "0999981061", "0999983509", "0999985023", "0999998475", "0999998733" };
 
     public static void main(String[] args) throws MasterNotRunningException, IOException {
         Connection connection = ConnectionFactory.createConnection();
-        Table table1 = connection.getTable(TableName.valueOf("table1"));
-        Table table2 = connection.getTable(TableName.valueOf("table2"));
+        Table table1 = connection.getTable(TableName.valueOf("scale1"));
+        Table table2 = connection.getTable(TableName.valueOf("scale2"));
         // Table table1 = connection.getTable(TableName.valueof("scale1"));
         // Table table2 = connection.getTable(TableName.valueof("scale2"));
         File output = new File("./output/output1.txt");
@@ -46,7 +46,7 @@ public class Processor {
         for (int i = 0; i < 10; i++) {
             timeCost += fromTable1and2(table1, table2, output, metadata, covidPatients[i]);
         }
-        System.out.println("\n" + Long.toString(timeCost / 10));
+        System.out.println("\n" + Long.toString(timeCost / 10) + " is the mean time for processing data");
         // test(table1, table2);
         // Close table and connection, and stream
         // output = null;
@@ -96,6 +96,7 @@ public class Processor {
         // loc2Timestamp.entrySet()\n");
 
         long time2 = LocalDateTime.now().toInstant(offset).toEpochMilli();
+        System.out.println("\nPatient is: " + covidPatient);
         System.out.println(
                 "It took " + Long.toString(time2 - time1)
                         + " milliseconds to complete the processing of data from HBase");

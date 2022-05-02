@@ -1,6 +1,6 @@
 The source code and bytecode for my HBase project DATA MANIPULATION
 
-Contributor:  
+Contributors:  
 https://github.com/sShaAanGg  
 https://github.com/Linshuanting
 # Referenced libraries
