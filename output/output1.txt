@@ -1,9 +1,0 @@
-It took 16399 milliseconds to complete the processing of data from HBase
-There are 400 people in the notification list
-===========================================
-Now test phoneNum: 0999999228
-data01 run time: 4876ms
-PhoneNum number: 442
-data02 run time: 4089ms
-PhoneNum number: 439
-===========================================
