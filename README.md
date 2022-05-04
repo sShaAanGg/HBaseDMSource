@@ -10,7 +10,9 @@ org.apache.hadoop.hbase (essential for HBase client API)
 ~~org.apache.poi (for the excel format input file)~~
 ## Result of our experiment
 ![](/../main/assets/Result.png)
+(Pattern1 uses 1st and 2nd table listed below)
 
+---
 **Please run the commands below at the root directory (HBaseDMsource)**
 ### CLASSPATH environment variable
 ```export CLASSPATH=$HBASE_HOME/lib/*:$HADOOP_HOME/lib/native/*:$HADOOP_HOME/share/hadoop/client/*:$HADOOP_HOME/share/hadoop/common/lib/*:$HADOOP_HOME/share/hadoop/common/*```
@@ -22,10 +24,7 @@ org.apache.hadoop.hbase (essential for HBase client API)
 ### jar creation
 ```cd target && jar -cfe DataGet.jar com/data/DataGet com/data/*.class com/tools/*.class && cd ..```
 ### Execution
-```java -cp $CLASSPATH:target/ Processor```
-
-## TODO: post the graph of experiment result
-
+```java -cp $CLASSPATH:target/ Processor```  
 ```java -cp $CLASSPATH:target/DataGet.jar com.data.DataGet```
 ## source code explanation
 **There is no main() function in GetData(). Functions in GetData.*() are called by Processor.**
