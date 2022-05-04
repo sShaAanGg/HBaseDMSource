@@ -1,8 +1,9 @@
 The source code and bytecode for my HBase project DATA MANIPULATION
 
 Contributors:  
-https://github.com/sShaAanGg  
-https://github.com/Linshuanting
+[sShaAanGg](https://github.com/sShaAanGg)
+[Linshuanting](https://github.com/Linshuanting)
+
 # Referenced libraries
 Java
 
