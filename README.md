@@ -27,6 +27,8 @@ matplotlib -->
 ### Execution
 ```java -cp $CLASSPATH:target/ Processor```
 
+## TODO: post the graph of experiment result
+
 ```java -cp $CLASSPATH:target/DataGet.jar com.data.DataGet```
 ## source code explanation
 **There is no main() function in GetData(). Functions in GetData.*() are called by Processor.**
