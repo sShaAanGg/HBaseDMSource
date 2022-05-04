@@ -8,11 +8,8 @@ Java
 
 org.apache.hadoop.hbase (essential for HBase client API)  
 ~~org.apache.poi (for the excel format input file)~~
-
-<!-- Python
-
-numpy  
-matplotlib -->
+## Result of our experiment
+![](/../main/assets/Result.png)
 
 **Please run the commands below at the root directory (HBaseDMsource)**
 ### CLASSPATH environment variable
