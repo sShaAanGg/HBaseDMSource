@@ -3,15 +3,19 @@ The source code and bytecode for my HBase project DATA MANIPULATION
 Contributors:  
 [sShaAanGg](https://github.com/sShaAanGg)
 [Linshuanting](https://github.com/Linshuanting)
+## Environment
+1. **Centos7.9**
+2. **Java-1.8.0_202**
+3. **Hadoop-3.2.1**
+4. **Zookeeper-3.6.3**
+5. **Hbase-2.3.7**
+6. **maven-3.8.5**
 
-# Referenced libraries
+## Referenced libraries
 Java
 
 org.apache.hadoop.hbase (essential for HBase client API)  
 ~~org.apache.poi (for the excel format input file)~~
-## Result of our experiment
-![](/../main/assets/Result.png)
-(Pattern1 uses 1st and 2nd table listed below)
 
 ---
 **Please run the commands below at the root directory (HBaseDMsource)**
@@ -112,6 +116,50 @@ COLUMN FAMILIES DESCRIPTION
 1 row(s)
 Quota is disabled
 ```
+## Result of our experiment
+![](/../main/assets/Result.png)
+### Pattern 01 Table Design
+
+#### Table01
+**row_key**: (String) phonenum  
+**columnFamily**: pos   
+**columnQualifier**: (long)positionCode 
+**value**: (int)placeCode   
+
+#### Table02
+**row_key**: (int)placeCode 
+**columnFamily**: pho   
+**columnQualifier**: (String)phonenum   
+**value**: (long)positionCode   
+
+### Pattern 02 Table Design
+
+#### Table03
+**row_key**: (String)xxx_phonenum   
+**columnFamily**: All_of_the_time   
+**columnQualifier**: (String)time   
+**value**: (String)placeCode  
+
+#### Table04
+**row_key**: (String)xxx_placecode_time   
+**columnFamily**: People   
+**columnQualifier**: (String)phonenum   
+**value**: null
+
+### Pattern 03 Table Design
+
+#### Table03
+**row_key**: (String)xxx_phonenum   
+**columnFamily**: All_of_the_time   
+**columnQualifier**: (String)time   
+**value**: (String)placeCode
+
+#### Table05
+**row_key**: (String)xxx_placecode   
+**columnFamily**: All_position_time   
+**columnQualifier**: (String)time   
+**value**: phonenum
+
 
 ## Reference
 1. https://javadoc.io/doc/org.apache.hbase/hbase-client/2.4.9/index.html
