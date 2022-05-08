@@ -1,7 +1,7 @@
 The source code and bytecode for my HBase project DATA MANIPULATION
 
 Contributors:  
-[sShaAanGg](https://github.com/sShaAanGg)
+[sShaAanGg](https://github.com/sShaAanGg)  
 [Linshuanting](https://github.com/Linshuanting)
 ## Environment
 1. **Centos7.9**
