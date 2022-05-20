@@ -1,4 +1,5 @@
-The source code and bytecode for my HBase project DATA MANIPULATION
+The source code for my HBase project data manipulation  
+The source code for data generation is located in https://github.com/Linshuanting/HbaseDataGenerate
 
 Contributors:  
 [sShaAanGg](https://github.com/sShaAanGg)  
